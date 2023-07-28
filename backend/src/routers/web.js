@@ -1,26 +1,14 @@
 import express from "express";
-import UserController from "../controller/UserController.js";
+import userRouter from "./userRoute.js";
+import catRoute from "./categoryRoute.js";
+import newsRoute from './newsRoute.js';
+
 
 const webRouter = express.Router();
-const userInstance = new UserController();
 
-// webRouter.get("/", userInstance.index);
-webRouter.get("/", (req, res)=>{
-  console.log('Hello Users...');
-});
+webRouter.use('/user', userRouter);
+webRouter.use('/category', catRoute);
+webRouter.use('/news', newsRoute);
 
-/*
-===================== Start User Routes=====================
-*/
-
-webRouter.post('/register', userInstance.store());
-
-/*
-===================== End User Routes=====================
-*/
-
-webRouter.get("/users", (req, res) => {
-  res.send("Hello Users");
-});
 
 export default webRouter;

@@ -6,13 +6,20 @@ import connectDB from './config/database.js';
 
 dotenv.config();
 
+// Connect to MongoDB
+connectDB();
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+
+//public folder
+app.use(express.static('public'));
+
 
 app.use('/', webRouter);
 
-// Connect to MongoDB
-connectDB();
 
 
 

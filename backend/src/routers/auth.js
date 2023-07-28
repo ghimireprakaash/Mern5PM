@@ -1,0 +1,1 @@
+let AuthInstance = new AuthController();

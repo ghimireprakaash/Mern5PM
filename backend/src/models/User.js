@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     gender: {
         type: String,
         required: true,
-        enum: ['male','female'],
+        enum: ['Male','Female'],
     },
     role: {
         type: String,
@@ -35,18 +35,26 @@ const userSchema = new mongoose.Schema({
 
 
 userSchema.pre('save', function(next){
-    if(!this.isModified('password')){
-        return next();
+    if(this.isModified('password')){
+        this.password = bcrypt.hashSync(this.password, 12);
     }
 
-    this.password = bcrypt.hashSync(this.password.bcrypt);
+    return next();
 })
+
+
+userSchema.methods.toJSON = function(){
+    let obj = this.toObject();
+    if(obj.image){
+        obj.image = `${process.env.HTTP_SERVER}/users/${obj.image}`;
+    }
+
+    delete obj.password;
+
+    return obj;
+}
 
 
 const User = mongoose.model('User', userSchema);
 
 export default User;
-
-
-//Using CommonJS
-// module.exports 
