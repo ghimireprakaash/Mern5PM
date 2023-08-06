@@ -2,6 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import webRouter from './routers/web.js';
 import connectDB from './config/database.js';
+import cors from 'cors';
+import Seeder from './seeder/index.js';
 
 
 dotenv.config();
@@ -12,6 +14,9 @@ connectDB();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(cors());
+
+Seeder();
 
 
 //public folder

@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import jwt from 'jsonwebtoken';
+
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -52,6 +54,20 @@ userSchema.methods.toJSON = function(){
     delete obj.password;
 
     return obj;
+}
+
+
+userSchema.methods.checkPassword = function(password){
+    return bcrypt.compareSync(password, this.password);
+}
+
+
+userSchema.methods.generateToken = function(){
+    return jwt.sign(
+        {id: this._id},
+        process.env.JWT_SECRET,
+        {expiresIn: process.env.JWT_EXPIRE}
+    );
 }
 
 
