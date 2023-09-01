@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import RouterComponents from "./components/routers/RouterComponents";
 import api from "./config/api";
+import "./App.css";
 
 export const UserContext = createContext(null);
 
@@ -21,6 +22,7 @@ function App() {
 
   useEffect(() => {
     getUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -3,7 +3,7 @@ import api from "../../../config/api";
 import TopHeader from "../layouts/TopHeader";
 import AsideBar from "../layouts/AsideBar";
 
-export default function UsersComponent() {
+export default function UserComponents() {
   const [users, setUsers] = useState([]);
   let token = localStorage.getItem("token") ?? false;
 
@@ -22,6 +22,7 @@ export default function UsersComponent() {
       });
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => getUsers(), []);
 
   return (

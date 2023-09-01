@@ -9,13 +9,11 @@ class AuthController {
       let password = req.body.password;
       if (user.checkPassword(password)) {
         let token = user.generateToken();
-        res
-          .status(200)
-          .json({
-            message: "Login Success",
-            token: token,
-            userId: user.userId,
-          });
+        res.status(200).json({
+          message: "Login Success",
+          token: token,
+          userId: user.id,
+        });
       } else {
         res.status(200).json({ message: "Password not matched!!!" });
       }
@@ -26,9 +24,9 @@ class AuthController {
 
   async checkToken(req, res) {
     let token = req.headers.authorization;
-    let user = await Auth.check(token);
+    let user = Auth.check(token);
     if (user) {
-      res.status(200).json({ isLogin: true });
+      res.status(200).json({ isLogin: true, user: user });
     } else {
       res.status(200).json({ isLogin: false });
     }

@@ -15,7 +15,7 @@ export default function RouteMiddleware() {
         window.location.href = '/login';
       }
     }).catch((err)=>{
-      console.log(err.res.data);
+      console.log(err);
     });
   }, []);
   

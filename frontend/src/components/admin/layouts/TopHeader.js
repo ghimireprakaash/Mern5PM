@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../../../fonts/valorant-font.ttf";
 
 export default function TopHeader() {
   return (
@@ -12,7 +13,7 @@ export default function TopHeader() {
           className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white"
           to="#"
         >
-          Company name
+          <h1>News Portal</h1>
         </Link>
         <ul className="navbar-nav flex-row d-md-none">
           <li className="nav-item text-nowrap">

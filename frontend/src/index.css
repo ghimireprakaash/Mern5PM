@@ -1,0 +1,5 @@
+@font-face {
+    font-family: 'VALORANT', sans-serif;
+    src: local('Valorant'), 
+    url('./fonts/valorant-font.ttf');
+}
